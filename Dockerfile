@@ -23,6 +23,8 @@ RUN cabal update && cabal install pandoc-${PANDOC_VERSION}
 
 WORKDIR /source
 
+RUN dpkg-reconfigure -p critical dash
+
 ENTRYPOINT ["/root/.cabal/bin/pandoc"]
 
 CMD ["--help"]
