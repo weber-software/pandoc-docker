@@ -23,7 +23,8 @@ RUN cabal update && cabal install pandoc-${PANDOC_VERSION}
 
 WORKDIR /source
 
-RUN dpkg-reconfigure -p critical dash
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 ENTRYPOINT ["/root/.cabal/bin/pandoc"]
 
